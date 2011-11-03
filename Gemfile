@@ -4,6 +4,7 @@ gem 'rails', '3.1.1.rc1'
 gem 'mysql2'
 gem 'rack', '1.3.3'
 gem 'devise'
+gem 'activerecord-postgresql-adapter'
  
 group :development, :test do
   gem 'capybara'
