@@ -1,0 +1,33 @@
+<h1>MNF Rankings</h1>
+
+<table class="table">
+  <tr>
+    <th class="first">Rank</th>
+	<th>Pic</th>
+	<th>Name</th>
+    <th>Played</th>
+    <th>Wins</th>
+	<th>Losses</th>
+	<th>Draws</th>
+    <th>MOMs</th>
+	<th>NoShow</th>
+	<th>Points</th>
+	<th class="last">W-Ratio</th>
+</tr>
+
+<% setRank(calc_stats(getPlayersWhoHavePlayed(@participants),@season)).each do |p| %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td class="last"><%= p[:rank] %></td>
+	<td><%= link_to image_tag(p[:img], :height => 30), p[:user] %><%=  %></td>
+	<td><%= link_to  p[:mnfname], p[:user] %></td>
+	<td><%= p[:games] %></td>
+	<td><%= p[:wins] %></td>
+	<td><%= p[:losses] %></td>
+	<td><%= p[:draws] %></td>
+	<td><%= p[:moms] %></td>
+	<td><%= p[:noshows] %></td>
+	<td><%= p[:total_points] %></td>
+	<td class="last"><%= number_to_percentage(p[:win_ratio], :precision => 0) %></td>
+  </tr>
+<% end %>
+</table>

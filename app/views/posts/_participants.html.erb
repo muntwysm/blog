@@ -1,0 +1,47 @@
+<div class="participants">
+	<% if @winners.count > 0 %>
+		<h3>Winners</h3>
+		<ul class="list">
+		<% @winners.each do |user| %>
+		  <li><%= image_tag user.img, :width => '30' %>
+		  <%= user.name %>
+		  (<%= progressive_points(user,@season,@post.game_date)%>)</li>
+		<% end %>
+		<ul>
+		  <br />
+		<h3>Losers</h3>
+		<ul class="list">
+		<% @losers.each do |user| %>
+		  <li><%= image_tag user.img, :width => '30' %>
+		  <%= user.name %>
+		  (<%= progressive_points(user,@season,@post.game_date)%>)</li>
+		<% end %>
+	<% else %>
+		<h3>Draw</h3>
+		<ul class="list">
+		<% @drawers.each do |user| %>
+		  <li><%= image_tag user.img, :width => '30' %>
+		  <%= user.name %>
+		  (<%= progressive_points(user,@season,@post.game_date)%>)</li>
+		<% end %>
+	<% end %> 
+	<br />
+	<% if @moms.count > 0 %>
+		<h3>MOM</h3>
+		<ul class="list">
+		<% @moms.each do |user| %>
+		  <li><%= image_tag user.img, :width => '30' %>
+		  <%= user.name %>
+		  (<%= progressive_points(user,@season,@post.game_date)%>)</li>
+		<% end %>
+	<% if @noshows.count > 0 %>
+		<h3>No Show</h3>
+		<ul class="list">
+			<% @noshows.each do |user| %>
+			  <li><%= image_tag user.img, :width => '30' %>
+			  <%= user.name %>
+			  (<%= progressive_points(user,@season,@post.game_date)%>)</li>
+			<% end %>
+		<% end %>
+	<% end %>
+</div>

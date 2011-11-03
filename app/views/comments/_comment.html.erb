@@ -1,0 +1,11 @@
+<p>
+  <b><%= image_tag comment.user.img, :height => 30 %>
+  <%= comment.user.name %>:</b>
+  <br />
+  <%= comment.body %>  
+  <% if user_signed_in? && current_user.id == comment.user_id %>
+  <%= link_to 'Delete', [comment.post, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+  <% end %>
+</p>

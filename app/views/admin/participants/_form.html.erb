@@ -1,0 +1,17 @@
+<%= form.fields_for :participants do |p_form| %>
+  <div class="field">
+    <%= p_form.label :user_id, 'Player:' %>
+    <%= p_form.collection_select :user_id, User.current.collect, :id, :mnfname, :prompt => "Select participant" %>
+
+    <%= p_form.label :score_id, 'Result:' %>
+    <%= p_form.collection_select :score_id, Score.all.collect, :id, :result, :prompt => "Select result" %>
+
+    <%= p_form.label :mom, 'MOM:' %>
+    <%= p_form.select(:mom, '<option value="1">MOM</option><option value="0"></option>', :prompt => "") %>
+
+    <% unless p_form.object.nil? || p_form.object.new_record? %>
+      <%= p_form.label :_destroy, 'Remove:' %>
+      <%= p_form.check_box :_destroy %>
+    <% end %>
+  </div>
+<% end %>

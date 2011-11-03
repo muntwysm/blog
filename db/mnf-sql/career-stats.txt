@@ -1,0 +1,20 @@
+  def wins(user)
+  	Post.joins(:participants => :score).where("result = 'win' and user_id = ?", user.id).count
+  end
+  
+  def losses(user)
+  	Post.joins(:participants => :score).where("result = 'loss' and user_id = ?", user.id).count
+  end
+  
+  def draws(user)
+  	Post.joins(:participants => :score).where("result = 'draw' and user_id = ?", user.id).count
+  end
+  
+  def moms(user,season)
+  	#Post.joins(:participants => :score).where("mom = true and user_id = ?", user.id).count
+  	Post.joins(:participants => :score).where("mom = true and user_id = ? and season_id = ?", user,season).count
+  end
+  
+  def noshows(user,season)
+  	Post.joins(:participants => :score).where("result = 'noshow' and user_id = ? and season_id = ?", user,season).count
+  end

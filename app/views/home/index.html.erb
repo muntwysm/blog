@@ -1,0 +1,21 @@
+<% content_for :sidebar, render(:partial => 'sidebar') -%>
+
+<div class="report">
+
+<%= render 'posts/post' %>
+
+<% if @post.comments.count > 0 %>
+<h2>Comments</h2>
+<% end %>
+<%= render @post.comments %>
+
+<h2>Add a comment:</h2>
+
+<%= render 'comments/form' %>
+</div>
+
+<div class="stats">
+	<%= render 'posts/participants' %>
+</div>
+<br class="clear">
+

@@ -1,0 +1,86 @@
+<% form_tag(@user_path, :method => "put" ) do -%>
+    <%= collection_select :@user, :id, User.current, :id, :mnfname, :prompt => "Select players" %>
+    <%= submit_tag "View Profile" %>
+<% end %>
+
+<div class="profile">
+<table id="profile">
+	<tr>
+		<td rowspan="3"><%= image_tag @user.img, :width => 70 %></td>
+		<td colspan="4"><h1>MNF Profile: <%= @user.name %></h1></td>
+	</tr>
+	<tr>
+		<td>Matches</td>
+	    <td>Wins</td>
+	    <td>Win%</td>
+		<td>MOMs</td>
+	</tr>
+	<tr valign="top">
+		<td><%= career_games(@user) %></td>
+	    <td><%= career_wins(@user) %></td>
+	    <td><%= number_to_percentage(career_win_ratio(@user), 
+					:precision => 0) %></td>
+		<td><%= career_moms(@user) %></td>
+	</tr>
+</table>
+</div>
+<br />
+
+<div class="seasons">
+<h3>Player Statistics</h3>
+<table class="table">
+  <tr>
+    <th class="first">Season</th>
+    <th>Rank</th>
+    <th>P</th>
+    <th>W</th>
+	<th>L</th>
+	<th>D</th>
+    <th>MOM</th>
+	<th>NS</th>
+	<th>PTS</th>
+	<th class="last">W-%</th>
+  </tr>
+  <tr>
+    <td class="first"><small><%= @season.name %></small></td>
+    <td></td>
+	<td><%= games(@user,@season) %></td>
+	<td><%= wins(@user,@season) %></td>
+	<td><%= losses(@user,@season) %></td>
+	<td><%= draws(@user,@season) %></td>
+	<td><%= moms(@user,@season) %></td>
+	<td><%= noshows(@user,@season) %></td>
+	<td><%= total_points(@user,@season) %></td>
+	<td class="last"><%= number_to_percentage(win_ratio(@user,@season), 
+				:precision => 0) %></td>
+  </tr>
+	<% @seasons.each do |season| %>
+	<% if games(@user,season) > 0 && season.active == false  %>
+	  <tr class="<%= cycle("even", "odd") %>">
+	    <td><small><%= season.name %></small></td>
+	    <td></td>
+		<td><%= games(@user,season) %></td>
+		<td><%= wins(@user,season) %></td>
+		<td><%= losses(@user,season) %></td>
+		<td><%= draws(@user,season) %></td>
+		<td><%= moms(@user,season) %></td>
+		<td><%= noshows(@user,season) %></td>
+		<td><%= total_points(@user,season) %></td>
+		<td><%= number_to_percentage(win_ratio(@user,season), 
+					:precision => 0) %></td>
+	  </tr>
+	<% end %>
+<% end %>
+</table>
+</div>
+
+<h3>This season</h3>
+<table>
+<% results(@user,@season) do |match| %>
+  <tr>
+	<td>mm<%= match.score %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to 'All Players', users_path %></p>

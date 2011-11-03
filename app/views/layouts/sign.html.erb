@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Monday Night Football</title>
+  <%= stylesheet_link_tag :application %>
+  <%= javascript_include_tag :application %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">Monday Night Football</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+	      <%= render 'shared/navigation' %>
+        </ul>
+      </div>
+      <div id="main-navigation">
+        <ul class="wat-cf">
+	      <li class=""><%= link_to "Home", root_path %></li>
+		  <li class=""><%= link_to "Reports", posts_path %></li>
+		  <li class=""><%= link_to "Players", users_path %></li>
+		  <li class=""><%= link_to "Rankings", pages_rankings_path %></li>
+		  <li class=""><%= link_to "Champions", pages_champions_path %></li>
+		  <li class=""><%= link_to "Admin", admin_root_path %></li>
+        </ul>
+      </div>
+    </div>    
+    <div id="box" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <%= yield %>
+    </div>
+	<div id="footer">
+      <div class="block">
+        <p>Copyright &copy; <%= Time.now.year %> Theater of Dreams.</p>
+      </div>      
+    </div>    
+  </div>
+</body>
+</html>

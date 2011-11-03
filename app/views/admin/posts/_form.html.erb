@@ -1,0 +1,39 @@
+<%= form_for([:admin, @post]) do |post_form| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= post_form.hidden_field :season_id %>
+  
+  <div class="field">
+    <%= post_form.label :game_date, "Game date" %><br />
+    <%= post_form.date_select :game_date %>
+  </div>
+  <div class="field">
+    <%= post_form.label :title %><br />
+    <%= post_form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= post_form.label :content %><br />
+    <%= post_form.text_area :content, :cols => 70 %>
+  </div>
+  <h2>Participants</h2>
+  <%= render :partial => 'admin/participants/form',
+             :locals => {:form => post_form} %>
+  <small>More participants? Submit then Edit this report for more.</small>
+  <br /><br />
+  <div class="field">
+    <%= post_form.label :publish, "Publish?" %><br />
+    <%= post_form.check_box :publish %>
+  </div>
+  <div class="actions">
+    <%= post_form.submit "Submit Report" %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Listing reports</h1>
+
+<%= link_to 'New Report', new_admin_post_path %>
+<br /><br />
+
+<table>
+  <tr>
+    <th>Game Date</th>
+	<th>Title</th>
+	<th>Season</th>
+	<th>Published</th>
+	<th></th>
+	<th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= l post.game_date, :format => :long %></td>
+	<td><%= post.title %></td>
+	<td><%= post.season.name %></td>
+	<td><%= post.publish %></td>
+	<td><%= link_to 'Show', [:admin, post] %></td>
+    <td><%= link_to 'Edit', edit_admin_post_path(post) %></td>
+    <td><%= link_to 'Destroy', [:admin, post], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>

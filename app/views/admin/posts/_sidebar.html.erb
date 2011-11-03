@@ -1,0 +1,20 @@
+<div class="block notice">
+	<h3>Season <%= @season.name %> Reports</h3>
+	<table>
+	  <tr>
+		<th>Round</th>
+	    <th class="left">Date</th>
+	  	<th class="left">Title</th>
+	</tr>
+	<% i = 1 %>
+	<% @posts.each do |post| %>
+	  <tr>
+		<td><%= i %></td>
+	    <td class="left"><% date = l post.game_date, :format => :short %>
+						<%= link_to date, [:admin, post] %></td>
+	  	<td class="left"><% %><%= link_to truncate(post.title, :length => 24), [:admin, post] %></td>
+	  </tr>
+		<% i += 1 %>
+	<% end %>
+	</table>
+</div>

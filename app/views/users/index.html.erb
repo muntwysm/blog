@@ -1,0 +1,22 @@
+<h1>Listing 'active' players</h1>
+
+<% @users.each do |user| %>
+<div class="img">
+	<%=link_to( image_tag(user.img, :height => 40), user_path(user)) %>
+  <div class="desc">
+	<%= user.mnfname %><br />
+  	<small><%= user.participants.count %> Matches</small>
+  </div>
+</div>
+<% end %>
+<br class="clear">
+
+<h5>Non-active players:</h5>
+<% form_tag(@user_path, :method => "put" ) do -%>
+    <%= collection_select :@user, :id, User.current, :id, :mnfname, :prompt => "Select players" %>
+    <%= submit_tag "View Profile" %>
+<% end %>
+
+
+
+

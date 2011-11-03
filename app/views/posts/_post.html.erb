@@ -1,0 +1,11 @@
+<h1>
+  <%= @title %> - <%= l @post.game_date, :format => :long %>
+</h1>
+
+<h1>
+	<%= @post.title %>
+</h1>
+	
+<p>
+  <%= raw(@post.content) %>
+</p>

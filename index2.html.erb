@@ -1,0 +1,27 @@
+<h1>Listing 'active' players</h1>
+
+<table>
+  <tr>
+    <th>Pic</th>
+    <th>MNFName</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Email</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= image_tag user.img, :height => '30' %></td>
+    <td><%= user.mnfname %></td>
+    <td><%= user.name %></td>
+    <td><%= user.surname %></td>
+    <td><%= user.email %></td>
+    <td><%= user.active %></td>
+    <td><%= link_to 'Show', user %></td>
+  </tr>
+<% end %>
+</table>
