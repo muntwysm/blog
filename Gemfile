@@ -16,7 +16,7 @@ end
 
 group :production do
   # gems specifically for Heroku go here
-  gem 'pg', '0.11.0'
+  #gem 'pg'
 end
 
 
