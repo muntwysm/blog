@@ -6,7 +6,7 @@ gem 'rack', '1.3.3'
 gem 'devise'
 gem 'jquery-rails'
  
-group :development, :test do
+group :development do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'hpricot'
@@ -16,7 +16,7 @@ end
 
 group :production do
   # gems specifically for Heroku go here
-  #gem 'pg'
+  gem 'pg'
 end
 
 
