@@ -30,3 +30,7 @@ test:
   username: rails_dev
   password: stefan
   socket: /tmp/mysql.sock
+
+#
+#
+#
