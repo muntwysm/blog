@@ -30,13 +30,3 @@ test:
   username: rails_dev
   password: stefan
   socket: /tmp/mysql.sock
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: blog_production
-  pool: 5
-  username: rails_dev
-  password: stefan
-  socket: /tmp/mysql.sock
